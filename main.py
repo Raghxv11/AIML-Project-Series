@@ -56,12 +56,14 @@ def get_response(user_input):
         response = check_all_messages(split_message)
         # Check if response is a greeting response
         if response in ['Hello!', 'Hi!', 'Hey!', 'Sup!', 'Heyo!']:
-            get_next_state()
+            # Directly call state_based_response to move to the next state
+            response = state_based_response(user_input)
     else:
         response = state_based_response(user_input)
     
     update_conversation_history(user_input, response)
     return response
+
 
 def check_all_messages(message):
     highest_prob_list = {}
